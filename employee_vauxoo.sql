@@ -41,3 +41,43 @@ INSERT INTO employee(
 		   ('Juan', 'Contreras', 4),
 		   ('Belkys', 'Salazar', 1)
 ;
+
+-- Table employee_hobby
+CREATE TABLE employee_hobby
+(
+   id serial, 
+   name character varying, 
+   description character varying, 
+   PRIMARY KEY (id)
+);
+
+-- Relation Eployee and Hobby
+CREATE TABLE employee_employeehobby
+(
+   employee_id integer, 
+   hobby_id integer,
+   PRIMARY KEY (employee_id, hobby_id),
+   FOREIGN KEY (employee_id) REFERENCES employee_department (id),
+   FOREIGN KEY (hobby_id) REFERENCES employee_department (id)
+);
+
+-- Insert Hobbies
+INSERT INTO employee_hobby(name, description)
+    VALUES ('Music', 'People who likes to play music'),
+	   ('Sports', 'People who likes to practice sports'),
+	   ('Sleep', 'People who likes to do nothing')
+;
+
+-- Employess hobbies
+INSERT INTO employee_employeehobby(employee_id, hobby_id)
+    VALUES (1, 1),
+		   (1, 3),
+		   (2, 1),
+		   (2, 2),
+		   (2, 3),
+		   (3, 3),
+		   (3, 2),
+		   (3, 1),
+		   (4, 1),
+		   (4, 3)
+;
