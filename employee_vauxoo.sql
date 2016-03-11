@@ -84,9 +84,11 @@ INSERT INTO employee_employeehobby(employee_id, hobby_id)
 
 -- Adding Boss
 ALTER TABLE employee
-  ADD COLUMN boss_id integer DEFAULT NULL;
+  ADD COLUMN boss_id integer DEFAULT NULL
+    CHECK (boss_id != id);
 ALTER TABLE employee
   ADD FOREIGN KEY (boss_id) REFERENCES employee (id);
 
-UPDATE employee SET boss_id = 1 WHERE id IN (1, 2, 4);
+UPDATE employee SET boss_id = NULL WHERE id = 1;
+UPDATE employee SET boss_id = 1 WHERE id IN (2, 4);
 UPDATE employee SET boss_id = 2 WHERE id = 3;
